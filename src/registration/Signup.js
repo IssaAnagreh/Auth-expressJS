@@ -26,11 +26,9 @@ export default class signup extends Component {
 
   onSubmit() {
     const scope = this;
-    axios.post('/register', scope.state.reg)
+    axios.post('http://localhost:8080/register', { major: 'hsdfs' })
       .then(function (res) {
-        // scope.setState({
-        //   workers: res.data
-        // })
+        console.log('9a77')
       })
   }
 
@@ -39,11 +37,10 @@ export default class signup extends Component {
     return (
       <div className='body'>
 
-        <img className='regIMG' src="https://www.useoftechnology.com/wp-content/uploads/2014/07/healthcare-technology-1068x713.jpg" alt="new" />
         <div className='regBlock'>
           <p>Regestration: </p>
           <TextField id="text" type="text" required />
-          <Button required={true}> Submit </Button>
+          <Button required={true} onClick={this.onSubmit}> Submit </Button>
 
         </div>
 

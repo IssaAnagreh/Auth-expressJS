@@ -38,8 +38,22 @@ app.use(session({
 // connect to react
 app.use(express.static(__dirname + '/../react-client/dist'));
 
-app.get('/', function(req, res) {
-  console.log('here')
+app.use(function(req, res, next) {
+  res.header("Access-Control-Allow-Origin", "*");
+  res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+  next();
+})
+
+app.get('/register', function(req, res) {
+  console.log('I have data', req.body.major)
+  res.status(200).send('ana')
+  console.log('signup')
+})
+
+app.post('/register', function(req, res) {
+  console.log('I have data', req.body.major)
+  res.status(200).send('ana')
+  console.log('signup')
 })
 
 // deployment helper
@@ -47,15 +61,16 @@ if (process.env.NODE_ENV === 'production') {
   // serve any static files
   app.use(express.static(path.join(__dirname, '../build')));
   app.use(express.static(path.join(__dirname, '../public')));
-  // handle React routing, return all requests to React app
-  app.get('*', function (req, res) {
-    res.sendStatus(404);
-  });
 }
+
+// handle React routing, return all requests to React app
+app.get('*', function (req, res) {
+  res.status(404).send('Page is not found');
+});
 
 
 //listen to local host
-var port = process.env.PORT || 4000;
+var port = process.env.PORT || 8080;
 app.listen(port, function () {
-  console.log('listening on port 4000!');
+  console.log('listening on port 8080!');
 });

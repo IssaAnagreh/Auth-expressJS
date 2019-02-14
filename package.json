@@ -10,6 +10,7 @@
     "body-parser": "^1.18.3",
     "cookie-parser": "^1.4.4",
     "express": "^4.16.4",
+    "express-partial": "^0.1.0",
     "express-session": "^1.15.6",
     "mongoose": "^5.4.12",
     "nodemon": "^1.18.10",
@@ -23,7 +24,7 @@
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
-    "server": "nodemon server.js",
+    "server": "nodemon ./server/server.js",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },
