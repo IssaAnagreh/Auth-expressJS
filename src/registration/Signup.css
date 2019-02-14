@@ -1,0 +1,15 @@
+body {
+    margin: 0px;
+    text-align: center;
+    display: inline-block;
+}
+
+.regIMG {
+    height: 500px;
+    width: 350px;
+}
+
+.regBlock {
+    margin: 0px;
+    display: inline-block;
+}
