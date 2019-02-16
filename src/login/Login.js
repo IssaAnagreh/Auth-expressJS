@@ -75,22 +75,22 @@ class Login extends Component {
 
   onSubmit() {
     //e.preventDefault();
-    // axios.post('/login', this.state, {withCredentials: true})
-    //   .then(res => console.log('in'))
-    $.ajax({
-      type: 'POST',
-      url: '/login',
-      data: this.state,
-      xhrFields: {
-        withCredentials: true
-      },
-      success: (data) => {
-        console.log('logged in')
-      },
-      error: (err) => {
-        alert('wrong password or username');
-      }
-    });
+    axios.post('/login', this.state, {withCredentials: true})
+      .then(res => console.log('in'))
+    // $.ajax({
+    //   type: 'POST',
+    //   url: '/login',
+    //   data: this.state,
+    //   xhrFields: {
+    //     withCredentials: true
+    //   },
+    //   success: (data) => {
+    //     console.log('logged in')
+    //   },
+    //   error: (err) => {
+    //     alert('wrong password or username');
+    //   }
+    // });
   }
 
   onEmailChange(event) {
