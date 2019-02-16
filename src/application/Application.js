@@ -83,7 +83,7 @@ class Application extends Component {
 
   componentDidMount() {
     console.log('in Application')
-    axios.get('/home', { withCredentials: true })
+    axios.get('/checkuser', { withCredentials: true })
       .then(res => {
         console.log('res.user', res.data)
         if (res.user) {

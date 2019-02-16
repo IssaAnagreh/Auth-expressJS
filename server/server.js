@@ -47,7 +47,7 @@ app.use(session({
 app.use(express.static(__dirname + '/../react-client/dist'));
 
 
-app.get('/home', sessionSection.checkSession);
+app.get('/checkuser', sessionSection.checkSession);
 
 app.post('/login', loginUser.loginUser)
 app.get('/logout', loginUser.logoutUser)

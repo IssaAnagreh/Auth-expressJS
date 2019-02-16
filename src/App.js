@@ -16,7 +16,7 @@ class App extends Component {
   }
 
   componentDidMount() {
-    // axios.get('/home', { withCredentials: true })
+    // axios.get('/', { withCredentials: true })
     //   .then(res => {
     //     console.log('res.user', res.data.user)
     //     this.setState({ token: res.data.user })

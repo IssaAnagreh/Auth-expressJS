@@ -66,17 +66,17 @@ class Login extends Component {
   }
 
   componentDidMount() {
-    axios.get('/home', { withCredentials: true })
+    axios.get('/checkuser', { withCredentials: true })
       .then(res => {
         console.log('in login', res.data.user)
         this.setState({ token: res.data.user })
       })
   }
 
-  onSubmit() {
-    //e.preventDefault();
+  onSubmit(event) {
+    //event.preventDefault();
     axios.post('/login', this.state, {withCredentials: true})
-      .then(res => console.log('in'))
+      .then(res => console.log('logged in'))
     // $.ajax({
     //   type: 'POST',
     //   url: '/login',
@@ -88,7 +88,7 @@ class Login extends Component {
     //     console.log('logged in')
     //   },
     //   error: (err) => {
-    //     alert('wrong password or username');
+    //     console.log('wrong password or username');
     //   }
     // });
   }
@@ -159,17 +159,14 @@ class Login extends Component {
     } else {
       console.log('login -> redirect')
       return (
-        // <Switch>
-        //   <Route path='/application' component={Application} />
-        //   <Redirect from='/' to='/application' />
-        // </Switch>
         <>
+        <Route path='/application' component={Application} />
         <Redirect
           to={{
             pathname: "/application"
           }}
         />
-        {/* <Application isAuthed={this.state.token}/> */}
+        <Application isAuthed={this.state.token}/>
         </>
       )
     }
