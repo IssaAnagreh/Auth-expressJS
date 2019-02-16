@@ -113,7 +113,7 @@ class Login extends Component {
 
   render() {
     const { classes } = this.props;
-    console.log('Login: url', this.props.location)
+   // console.log('Login: url', this.props.location)
 
     if (!this.state.token) {
       return (
@@ -160,10 +160,10 @@ class Login extends Component {
     } else {
       console.log('login -> redirect')
       return (
-        <Router>
+        <>
           <Redirect to={{ pathname: '/application' }} />
           <Application />
-        </Router>
+        </>
       )
     }
   }

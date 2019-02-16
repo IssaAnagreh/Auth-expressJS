@@ -109,7 +109,7 @@ class Application extends Component {
     const { classes } = this.props;
     console.log('application: this.props.isAuthed',this.props.isAuthed)
     console.log('application: this.state.token', this.state.token)
-    console.log('application: url', this.props.location)
+    // console.log('application: url', this.props.location)
 
     if (this.state.token) {
       return (
@@ -164,7 +164,7 @@ class Application extends Component {
         </main>
       );
     } else {
-      this.props.location.pathname = "/application"
+      // this.props.location.pathname = "/application"
       return (
         <div>
           not authorized

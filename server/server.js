@@ -44,7 +44,7 @@ app.use(session({
 }));
 
 // connect to react
-app.use(express.static(__dirname + '/../react-client/dist'));
+app.use(express.static(__dirname + 'build'));
 
 
 app.get('/checkuser', sessionSection.checkSession);
@@ -67,8 +67,8 @@ if (process.env.NODE_ENV === 'production') {
 }
 
 // handle React routing, return all requests to React app
-app.get('*', function (req, res) {
-  res.status(404).send('Page is not found');
+app.get('*', (req, res) => {
+  res.sendFile(path.join(__dirname, 'build', 'index.html'));
 });
 
 
