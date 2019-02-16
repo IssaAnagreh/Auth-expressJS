@@ -34,7 +34,7 @@ class App extends Component {
           <Switch>
             <Route path="/application" component={() => <Application isAuthed={isAuthed} />} />
             {/* <Route exact path="/logout" component={Logout} /> */}
-            <Route path="/login" component={() => <Login isAuthed={isAuthed} />} />
+            <Route path="/" component={() => <Login isAuthed={isAuthed} />} />
           </Switch>
         </Suspense>
       </Router>
