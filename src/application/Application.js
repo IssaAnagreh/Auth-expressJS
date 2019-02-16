@@ -1,8 +1,10 @@
 /* eslint-disable no-undef */
 import React, { Component } from 'react';
+import {withRouter} from 'react-router-dom'
 import PropTypes from 'prop-types';
 import axios from 'axios';
 import $ from 'jquery';
+import { connect } from 'react-redux';
 
 import Avatar from '@material-ui/core/Avatar';
 import Button from '@material-ui/core/Button';
@@ -79,12 +81,13 @@ class Application extends Component {
     }
   }
 
-  componentWillMount() {
+  componentDidMount() {
+    console.log('in Application')
     axios.get('/home', { withCredentials: true })
       .then(res => {
         console.log('res.user', res.data)
         if (res.user) {
-          this.setState({ token: res.user })
+          this.setState({ token: res.data.user })
         }
       })
   }
@@ -133,8 +136,6 @@ class Application extends Component {
 
             </form>
 
-            <p>Do you have an account? if not <span><a href="/signup">Register</a></span> now.</p>
-            <p><span><a href="#">Forgot</a></span> your password?</p>
             <form action={`http://localhost:8080/application/download/${this.state.download}`}>
               <input type='submit' />
             </form>

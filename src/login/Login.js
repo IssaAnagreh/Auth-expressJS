@@ -1,9 +1,12 @@
 /* eslint-disable no-undef */
 import React, { Component } from 'react';
-import { BrowserRouter as Router, Route, Switch, Redirect } from 'react-router-dom';
+import { BrowserRouter as Redirect, Switch, Route } from 'react-router-dom';
+import {withRouter} from 'react-router-dom'
 import PropTypes from 'prop-types';
 import axios from 'axios'
 import $ from 'jquery'
+import { connect } from 'react-redux';
+
 import Avatar from '@material-ui/core/Avatar';
 import Button from '@material-ui/core/Button';
 import CssBaseline from '@material-ui/core/CssBaseline';
@@ -16,6 +19,7 @@ import Paper from '@material-ui/core/Paper';
 import Typography from '@material-ui/core/Typography';
 import withStyles from '@material-ui/core/styles/withStyles';
 import './Login.css';
+import Application from '../application/Application';
 
 axios.defaults.withCredentials = true;
 
@@ -109,8 +113,8 @@ class Login extends Component {
   render() {
     const { classes } = this.props;
     console.log('login: this.state.token', this.state.token)
-    console.log('login: this.props.isAuthed', this.props.isAuthed)
-    if (!this.props.isAuthed) {
+    console.log('login: this.props.isAuthed', this.props.isAuthed, this.props.routes)
+    // if (!this.state.token) {
       return (
         <main className={classes.main} >
           <CssBaseline />
@@ -152,15 +156,23 @@ class Login extends Component {
           </Paper>
         </main>
       );
-    } else {
-      return (
-        <Redirect
-          to={{
-            pathname: "/application", 
-          }}
-        />
-      )
-    }
+    // } else {
+    //   console.log('login -> redirect')
+    //   return (
+    //     // <Switch>
+    //     //   <Route path='/application' component={Application} />
+    //     //   <Redirect from='/' to='/application' />
+    //     // </Switch>
+    //     <>
+    //     <Redirect
+    //       to={{
+    //         pathname: "/application"
+    //       }}
+    //     />
+    //     {/* <Application isAuthed={this.state.token}/> */}
+    //     </>
+    //   )
+    // }
   }
 }
 
