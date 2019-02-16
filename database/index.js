@@ -20,6 +20,7 @@ var userSchema = mongoose.Schema({
   approval: Boolean,
   finalapproval: Boolean,
   phonenumber: Number,
+  images: [],
   //client: [{ type: mongoose.Schema.Types.ObjectId, ref: 'client' }]
 });
 

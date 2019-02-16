@@ -5,6 +5,7 @@ const partial = require('express-partial'); //requires npm install
 const cookieParser = require('cookie-parser'); //requires npm install
 const session = require('express-session'); //requires npm install
 const path = require("path"); //requires npm install
+const fs = require('fs');
 // const Promise = require('bluebird'); //requires npm install
 // const multer = require("multer");
 // //const upload = multer({dest: '/uploads/'})
@@ -12,11 +13,11 @@ const path = require("path"); //requires npm install
 // const cloudinaryStorage = require("multer-storage-cloudinary");
 
 
-const signupUser = require('./signup.js');
-const loginUser = require('./login.js');
-const forgotPassword = require('./forgotPassword.js');
-const application = require('./application')
-const sessionSection = require('./session')
+const signupUser = require('./server/signup.js');
+const loginUser = require('./server/login.js');
+const forgotPassword = require('./server/forgotPassword.js');
+const application = require('./server/application')
+const sessionSection = require('./server/session')
 
 // use express
 const app = express();
@@ -43,37 +44,53 @@ app.use(session({
   saveUninitialized: true
 }));
 
+var images = function (req, res) {
+  fs.readdir(path.join(__dirname, '/src/application/uploads'), (err, files) => {
+    console.log('========files==========', files);
+    res.send(JSON.stringify(files));
+  });
+}
+
+
 // connect to react
-app.use(express.static(__dirname + 'build'));
+app.use(express.static(path.join(__dirname, '/public')));
 
 
 app.get('/checkuser', sessionSection.checkSession);
 
+app.get('/images', images);
+
 app.post('/login', loginUser.loginUser)
+app.post('/employee', loginUser.loginEmployee)
+app.post('/manager', loginUser.loginManager)
 app.get('/logout', loginUser.logoutUser)
 app.post('/signup', signupUser.signupUser)
 app.post('/application/upload', application.upload)
-app.get('/application/download/:file', application.download)
+
+
+app.get('/download', application.download)
+//app.get('/download/:file', application.download)
+
 app.get('/reset/:token', forgotPassword.token);
 app.get('/reset', forgotPassword.forgotPassword)
 
 
 
-// deployment helper
-if (process.env.NODE_ENV === 'production') {
-  // serve any static files
-  app.use(express.static(path.join(__dirname, 'build')));
-  //app.use(express.static(path.join(__dirname, '../public')));
-}
+// // deployment helper
+// if (process.env.NODE_ENV === 'production') {
+//   // serve any static files
+//   app.use(express.static(path.join(__dirname, '../build')));
+//   //app.use(express.static(path.join(__dirname, '../public')));
+// }
 
 // handle React routing, return all requests to React app
 app.get('*', (req, res) => {
-  res.sendFile(path.join(__dirname, 'build', 'index.html'));
+  res.sendFile(path.join(__dirname, '/public', '/index.html'));
 });
 
 
 //listen to local host
-var port = process.env.PORT || 5000;
+var port = process.env.PORT || 8080;
 app.listen(port, function () {
-  console.log('listening on port 5000!');
+  console.log('listening on port 8080!');
 });

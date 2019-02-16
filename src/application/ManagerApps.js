@@ -72,7 +72,7 @@ const styles = theme => ({
   },
 });
 
-class Application extends Component {
+class ManagerApps extends Component {
   constructor(props) {
     super(props)
     this.state = {
@@ -169,65 +169,7 @@ class Application extends Component {
     if (this.state.token) {
       return (
         <main className={classes.main} >
-          <CssBaseline />
-          <Paper className={classes.paper}>
-            <Typography component="h1" variant="h5">
-              Application
-        </Typography>
-
-            <form onSubmit={this.handleSubmit}
-              onChange={this.onChange.bind(this)}>
-              <input id="files" name="files" type="file" className={classes.input} />
-              <label htmlFor="files">
-                <Button variant="contained" color="default" component="span" className={classes.button} >
-                  Choose file
-              </Button>
-              </label>
-              <Button type='submit' className={classes.button}>Send</Button>
-            </form>
-            <p>{this.state.name}</p>
-            <form className={classes.root} autoComplete="off">
-              <FormControl className={classes.formControl}>
-                <InputLabel>Major</InputLabel>
-                <Select
-                  value={this.state.major}
-                  onChange={this.handleChange}
-                  inputProps={{
-                    name: 'major',
-                    id: 'major-simple',
-                  }}
-                >
-                  <MenuItem value="">
-                    <em>None</em>
-                  </MenuItem>
-                  <MenuItem value={'Medical Doctor'}>Medical Doctor</MenuItem>
-                  <MenuItem value={'Nurse'}>Nurse</MenuItem>
-                  <MenuItem value={'Pharmasist'}>Pharmasist</MenuItem>
-                  <MenuItem value={'Ray technician'}>Ray technician</MenuItem>
-                </Select>
-              </FormControl>
-            </form>
-            <form className={classes.form}>
-              <FormControl margin="normal" required fullWidth>
-                <InputLabel>Email Address</InputLabel>
-                <Input autoComplete="text" autoFocus onChange={this.onEmailChange.bind(this)} />
-              </FormControl>
-              <FormControl margin="normal" required fullWidth>
-                <InputLabel htmlFor="password">Password</InputLabel>
-                <Input type="password" autoComplete="current-password" onChange={this.onPasswordChange.bind(this)} />
-              </FormControl>
-              <Button
-                type="submit"
-                fullWidth
-                variant="contained"
-                color="primary"
-                className={classes.submit}
-                onClick={this.onApply.bind(this)}
-              >
-                Apply
-            </Button>
-            </form>
-          </Paper>
+          {this.state.names}
         </main>
       );
     } else {
@@ -241,11 +183,11 @@ class Application extends Component {
   }
 }
 
-Application.propTypes = {
+ManagerApps.propTypes = {
   classes: PropTypes.object.isRequired,
 };
 
-export default withStyles(styles)(Application);
+export default withStyles(styles)(ManagerApps);
 
 
 //action={`http://localhost:8080/application/download/${this.state.download}`}

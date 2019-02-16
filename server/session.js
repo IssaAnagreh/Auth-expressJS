@@ -1,12 +1,17 @@
 var user;
+var name;
+var email;
 // create a session function
 const createSession = function (req, res, newUser) {
   // var clients = []
   req.session.regenerate(function (err) {
     if (err) { return err }
-    console.log('session newUser')
+    console.log('session newUser', newUser)
     req.session.user = String(newUser._id); //most important section of this function
+    req.session.name = String(newUser.firstName) + "-" + String(newUser.lastName);
+    req.session.email =  String(newUser.email)
     user = req.session.user;
+    name = req.session.name;
     if (req.session.views) {
       req.session.views++
       console.log('after save session', req.session)
@@ -26,6 +31,8 @@ const isLoggedIn = function (req) {
 const checkUser = function (req, res, next) {
   console.log('req.session.views', req.session.views)
   req.session.user = user;
+  req.session.name = name;
+  req.session.email = email;
   if (req.session.views) {
     req.session.views++
   } else {
@@ -41,6 +48,8 @@ const checkUser = function (req, res, next) {
 
 const checkSession = function(req, res) {
   req.session.user = user;
+  req.session.name = name;
+  req.session.email = email;
   console.log('req.session', req.session)
   res.send(req.session)
 }

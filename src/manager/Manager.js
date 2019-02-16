@@ -18,8 +18,7 @@ import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 import Paper from '@material-ui/core/Paper';
 import Typography from '@material-ui/core/Typography';
 import withStyles from '@material-ui/core/styles/withStyles';
-import './Login.css';
-import Application from '../application/Application';
+import ManagerApps from '../application/ManagerApps';
 
 axios.defaults.withCredentials = true;
 
@@ -55,7 +54,7 @@ const styles = theme => ({
   },
 });
 
-class Login extends Component {
+class Manager extends Component {
   constructor(props) {
     super(props)
     this.state = {
@@ -75,7 +74,7 @@ class Login extends Component {
 
   onSubmit(event) {
     //event.preventDefault();
-    axios.post('/login', this.state, { withCredentials: true })
+    axios.post('/manager', this.state, { withCredentials: true })
       .then(res => console.log('logged in'))
     // $.ajax({
     //   type: 'POST',
@@ -124,7 +123,7 @@ class Login extends Component {
               <LockOutlinedIcon />
             </Avatar>
             <Typography component="h1" variant="h5">
-              Login
+              Manager
           </Typography>
             <form className={classes.form}>
               <FormControl margin="normal" required fullWidth>
@@ -153,19 +152,17 @@ class Login extends Component {
               className="link-button"
               onClick={this.handleForgotPassword.bind(this)}>
               <p style={{ margin: "0px" }}>Forgot</p></button></span> your password?</p>
-
-              <p style={{ margin: "0px" }}>Are you a <Link style={{ textDecoration: "none" }} to="/manager">Manager</Link> ?</p>
               <p style={{ margin: "0px" }}>Are you an <Link style={{ textDecoration: "none" }} to="/employee">Employee</Link> ?</p>
-
+              <Link style={{ textDecoration: "none" }} to="/login">Back</Link>
           </Paper>
         </main>
       );
     } else {
-      console.log('login -> redirect')
+      console.log('Manager -> redirect')
       return (
         <>
           <Redirect to={{ pathname: '/application' }} />
-          <Application />
+          <ManagerApps />
         </>
       )
     }
@@ -173,11 +170,11 @@ class Login extends Component {
 }
 
 
-Login.propTypes = {
+Manager.propTypes = {
   classes: PropTypes.object.isRequired,
 };
 
-export default withStyles(styles)(Login);
+export default withStyles(styles)(Manager);
 
         // {/* <Application isAuthed={this.state.token}/>
         //   <Route path='/application' component={Application} /> */}
