@@ -1,7 +1,7 @@
 /* eslint-disable no-undef */
 import React, { Component } from 'react';
 import { BrowserRouter as Redirect, Switch, Route } from 'react-router-dom';
-import {withRouter} from 'react-router-dom'
+import { withRouter } from 'react-router-dom'
 import PropTypes from 'prop-types';
 import axios from 'axios'
 import $ from 'jquery'
@@ -75,7 +75,7 @@ class Login extends Component {
 
   onSubmit(event) {
     //event.preventDefault();
-    axios.post('/login', this.state, {withCredentials: true})
+    axios.post('/login', this.state, { withCredentials: true })
       .then(res => console.log('logged in'))
     // $.ajax({
     //   type: 'POST',
@@ -91,6 +91,7 @@ class Login extends Component {
     //     console.log('wrong password or username');
     //   }
     // });
+    console.log('login: this.state.token', this.state.token)
   }
 
   onEmailChange(event) {
@@ -112,8 +113,8 @@ class Login extends Component {
 
   render() {
     const { classes } = this.props;
-    console.log('login: this.state.token', this.state.token)
-    console.log('login: this.props.isAuthed', this.props.isAuthed, this.props.routes)
+    console.log('Login: url', this.props.location)
+
     if (!this.state.token) {
       return (
         <main className={classes.main} >
@@ -158,17 +159,7 @@ class Login extends Component {
       );
     } else {
       console.log('login -> redirect')
-      return (
-        <>
-        <Route path='/application' component={Application} />
-        <Redirect
-          to={{
-            pathname: "/application"
-          }}
-        />
-        <Application isAuthed={this.state.token}/>
-        </>
-      )
+      return (<Redirect to={{pathname: '/application'}} />)
     }
   }
 }
@@ -179,3 +170,6 @@ Login.propTypes = {
 };
 
 export default withStyles(styles)(Login);
+
+        // {/* <Application isAuthed={this.state.token}/>
+        //   <Route path='/application' component={Application} /> */}

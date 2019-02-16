@@ -81,21 +81,19 @@ class Application extends Component {
     }
   }
 
-  componentDidMount() {
+  componentWillMount() {
     console.log('in Application')
     axios.get('/checkuser', { withCredentials: true })
       .then(res => {
         console.log('res.user', res.data)
-        if (res.user) {
           this.setState({ token: res.data.user })
-        }
       })
   }
 
   handleSubmit(event) {
     const data = new FormData(event.target);
     axios.post('application/upload', data)
-      .then(res => console.log('in'))
+      .then(res => {console.log('in')})
   }
 
   onChange(event) {
@@ -111,7 +109,9 @@ class Application extends Component {
     const { classes } = this.props;
     console.log('application: this.props.isAuthed',this.props.isAuthed)
     console.log('application: this.state.token', this.state.token)
-    if (this.props.isAuthed) {
+    console.log('application: url', this.props.location)
+
+    if (this.state.token) {
       return (
         <main className={classes.main} >
           <CssBaseline />
@@ -164,6 +164,7 @@ class Application extends Component {
         </main>
       );
     } else {
+      this.props.location.pathname = "/application"
       return (
         <div>
           not authorized

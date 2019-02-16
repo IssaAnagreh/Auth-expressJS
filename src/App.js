@@ -16,6 +16,7 @@ class App extends Component {
   }
 
   componentDidMount() {
+    console.log('in App')
     // axios.get('/', { withCredentials: true })
     //   .then(res => {
     //     console.log('res.user', res.data.user)
@@ -24,35 +25,20 @@ class App extends Component {
   }
 
   render() {
-    console.log('App: this.state.token', this.state.token)
-    let isAuthed = this.state.token ? true : false
-    console.log('isAuthed', isAuthed)
-    if (isAuthed) {
+    // let isAuthed = this.state.token ? true : false
+    // console.log('isAuthed', isAuthed)
     return (
       <Router className="App">
         <Suspense fallback={<div>Loading...</div>}>
           <Switch>
-            <Route path="/application" component={() => <Application isAuthed={isAuthed} />} />
+            <Route exact path="/application" component={Application} />
             {/* <Route exact path="/logout" component={Logout} /> */}
-            <Route path="/" component={() => <Login isAuthed={isAuthed} />} />
+            {/* <Route path="/signup" component={Signup} /> */}
+            <Route path="/login" component={Login} />
           </Switch>
         </Suspense>
       </Router>
     );
-    } else {
-      return (
-        <Router className="App">
-          <Suspense fallback={<div>Loading...</div>}>
-            <Switch>
-              <Route path="/application" component={() => <Application isAuthed={isAuthed} />} />
-              <Route path="/signup" component={Signup} />
-              <Route path="/" component={() => <Login isAuthed={isAuthed} />} />
-            </Switch>
-          </Suspense>
-        </Router>
-      )
-    }
-
   }
 }
 
