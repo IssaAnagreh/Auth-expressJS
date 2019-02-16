@@ -27,7 +27,7 @@ class App extends Component {
     console.log('App: this.state.token', this.state.token)
     let isAuthed = this.state.token ? true : false
     console.log('isAuthed', isAuthed)
-    //if (isAuthed) {
+    if (isAuthed) {
     return (
       <Router className="App">
         <Suspense fallback={<div>Loading...</div>}>
@@ -39,19 +39,19 @@ class App extends Component {
         </Suspense>
       </Router>
     );
-    // } else {
-    //   return (
-    //     <Router className="App">
-    //       <Suspense fallback={<div>Loading...</div>}>
-    //         <Switch>
-    //           <Route path="/application" component={() => <Application isAuthed={isAuthed} />} />
-    //           <Route path="/signup" component={Signup} />
-    //           <Route path="/" component={() => <Login isAuthed={isAuthed} />} />
-    //         </Switch>
-    //       </Suspense>
-    //     </Router>
-    //   )
-    // }
+    } else {
+      return (
+        <Router className="App">
+          <Suspense fallback={<div>Loading...</div>}>
+            <Switch>
+              <Route path="/application" component={() => <Application isAuthed={isAuthed} />} />
+              <Route path="/signup" component={Signup} />
+              <Route path="/" component={() => <Login isAuthed={isAuthed} />} />
+            </Switch>
+          </Suspense>
+        </Router>
+      )
+    }
 
   }
 }

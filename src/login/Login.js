@@ -114,7 +114,7 @@ class Login extends Component {
     const { classes } = this.props;
     console.log('login: this.state.token', this.state.token)
     console.log('login: this.props.isAuthed', this.props.isAuthed, this.props.routes)
-    // if (!this.state.token) {
+    if (!this.state.token) {
       return (
         <main className={classes.main} >
           <CssBaseline />
@@ -128,7 +128,7 @@ class Login extends Component {
             <form className={classes.form}>
               <FormControl margin="normal" required fullWidth>
                 <InputLabel>Email Address</InputLabel>
-                <Input autoComplete="email" autoFocus onChange={this.onEmailChange.bind(this)} />
+                <Input autoComplete="text" autoFocus onChange={this.onEmailChange.bind(this)} />
               </FormControl>
               <FormControl margin="normal" required fullWidth>
                 <InputLabel htmlFor="password">Password</InputLabel>
@@ -156,23 +156,23 @@ class Login extends Component {
           </Paper>
         </main>
       );
-    // } else {
-    //   console.log('login -> redirect')
-    //   return (
-    //     // <Switch>
-    //     //   <Route path='/application' component={Application} />
-    //     //   <Redirect from='/' to='/application' />
-    //     // </Switch>
-    //     <>
-    //     <Redirect
-    //       to={{
-    //         pathname: "/application"
-    //       }}
-    //     />
-    //     {/* <Application isAuthed={this.state.token}/> */}
-    //     </>
-    //   )
-    // }
+    } else {
+      console.log('login -> redirect')
+      return (
+        // <Switch>
+        //   <Route path='/application' component={Application} />
+        //   <Redirect from='/' to='/application' />
+        // </Switch>
+        <>
+        <Redirect
+          to={{
+            pathname: "/application"
+          }}
+        />
+        {/* <Application isAuthed={this.state.token}/> */}
+        </>
+      )
+    }
   }
 }
 
