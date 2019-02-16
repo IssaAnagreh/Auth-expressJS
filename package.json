@@ -9,10 +9,15 @@
     "bcrypt-nodejs": "0.0.3",
     "body-parser": "^1.18.3",
     "cookie-parser": "^1.4.4",
+    "crypto": "^1.0.1",
     "express": "^4.16.4",
     "express-partial": "^0.1.0",
     "express-session": "^1.15.6",
+    "form-serialize": "^0.7.2",
+    "formidable": "^1.2.1",
+    "jquery": "^3.3.1",
     "mongoose": "^5.4.12",
+    "nodemailer": "^5.1.1",
     "nodemon": "^1.18.10",
     "path": "^0.12.7",
     "react": "^16.8.1",
@@ -28,6 +33,7 @@
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },
+  "proxy": "http://localhost:8080",
   "eslintConfig": {
     "extends": "react-app"
   },

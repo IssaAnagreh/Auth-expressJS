@@ -1,12 +1,9 @@
 const express = require('express');
 const bodyParser = require('body-parser');
-const db = require('../database');
-const mongoose = require('mongoose');
 const request = require('request'); //requires npm install
 const partial = require('express-partial'); //requires npm install
 const cookieParser = require('cookie-parser'); //requires npm install
 const session = require('express-session'); //requires npm install
-const bcrypt = require('bcrypt-nodejs'); //requires npm install
 const path = require("path"); //requires npm install
 // const Promise = require('bluebird'); //requires npm install
 // const multer = require("multer");
@@ -14,11 +11,22 @@ const path = require("path"); //requires npm install
 // const cloudinary = require("cloudinary");
 // const cloudinaryStorage = require("multer-storage-cloudinary");
 
-// from Database
-// var worker = db.worker;
+
+const signupUser = require('./signup.js');
+const loginUser = require('./login.js');
+const forgotPassword = require('./forgotPassword.js');
+const application = require('./application')
+const sessionSection = require('./session')
 
 // use express
-var app = express();
+const app = express();
+
+app.use(function (req, res, next) {
+  res.header("Access-Control-Allow-Origin", "*");
+  res.header('Access-Control-Allow-Credentials', true);
+  res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+  next();
+})
 
 // body parser
 app.use(bodyParser.urlencoded({
@@ -29,32 +37,27 @@ app.use(bodyParser.json());
 // cookies and session
 app.use(cookieParser('shhhh, very secret'));
 app.use(session({
-  cookie: { secure: false, maxAge: 60000 },
+  cookie: { secure: false, maxAge: 3600000 },
   secret: 'shhh, it\'s a secret',
-  resave: true,
+  resave: false,
   saveUninitialized: true
 }));
 
 // connect to react
 app.use(express.static(__dirname + '/../react-client/dist'));
 
-app.use(function(req, res, next) {
-  res.header("Access-Control-Allow-Origin", "*");
-  res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
-  next();
-})
 
-app.get('/register', function(req, res) {
-  console.log('I have data', req.body.major)
-  res.status(200).send('ana')
-  console.log('signup')
-})
+app.get('/home', sessionSection.checkSession);
 
-app.post('/register', function(req, res) {
-  console.log('I have data', req.body.major)
-  res.status(200).send('ana')
-  console.log('signup')
-})
+app.post('/login', loginUser.loginUser)
+app.get('/logout', loginUser.logoutUser)
+app.post('/signup', signupUser.signupUser)
+app.post('/application/upload', application.upload)
+app.get('/application/download/:file', application.download)
+app.get('/reset/:token', forgotPassword.token);
+app.get('/reset', forgotPassword.forgotPassword)
+
+
 
 // deployment helper
 if (process.env.NODE_ENV === 'production') {
