@@ -1,6 +1,6 @@
 /* eslint-disable no-undef */
 import React, { Component } from 'react';
-import { BrowserRouter as Redirect, Switch, Route } from 'react-router-dom';
+import { BrowserRouter as Redirect, Switch, Route, Router } from 'react-router-dom';
 import { withRouter } from 'react-router-dom'
 import PropTypes from 'prop-types';
 import axios from 'axios'
@@ -159,7 +159,12 @@ class Login extends Component {
       );
     } else {
       console.log('login -> redirect')
-      return (<Redirect to={{pathname: '/application'}} />)
+      return (
+        <Router>
+          <Redirect to={{ pathname: '/application' }} />
+          <Application />
+        </Router>
+      )
     }
   }
 }
