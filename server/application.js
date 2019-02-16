@@ -22,7 +22,7 @@ const upload = function (req, res) {
           found[0].email.push(files.files.name)
         }
       }
-    })
+    }) 
 
     var oldpath = files.files.path;
     var newp = path.resolve(__dirname, '../public/uploads') + "/" + files.files.name + '-USER: ' + req.session.name;
