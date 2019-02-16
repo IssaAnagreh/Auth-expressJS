@@ -62,8 +62,8 @@ app.get('/reset', forgotPassword.forgotPassword)
 // deployment helper
 if (process.env.NODE_ENV === 'production') {
   // serve any static files
-  app.use(express.static(path.join(__dirname, '../build')));
-  app.use(express.static(path.join(__dirname, '../public')));
+  app.use(express.static(path.join(__dirname, 'build')));
+  //app.use(express.static(path.join(__dirname, '../public')));
 }
 
 // handle React routing, return all requests to React app
