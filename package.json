@@ -29,7 +29,7 @@
     "request": "^2.88.0"
   },
   "scripts": {
-    "start": "node ./server/server.js",
+    "start": "node ./server/server.js && react-scripts start",
     "client": "react-scripts start",
     "build": "react-scripts build",
     "server": "nodemon ./server/server.js",
