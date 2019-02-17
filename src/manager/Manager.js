@@ -62,6 +62,7 @@ class Manager extends Component {
   }
 
   componentDidMount() {
+    console.log('=========in Manager=========')
     axios.get('/checkuser', { withCredentials: true })
       .then(res => {
         this.setState({ token: res.data })
@@ -74,6 +75,7 @@ class Manager extends Component {
     let scope = this;
     axios.post('/manager', this.state, { withCredentials: true })
       .then(res => {
+        alert('0'+res.data)
         axios.get('/savesession', { withCredentials: true })
           .then(res => {
             alert('1'+res.data.user)

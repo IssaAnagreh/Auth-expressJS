@@ -73,6 +73,7 @@ class Employee extends Component {
     let scope = this;
     axios.post('/employee', this.state, { withCredentials: true })
       .then(res => {
+        alert('0'+res.data)
         axios.get('/savesession', { withCredentials: true })
           .then(res => {
             alert('1'+res.data.user)

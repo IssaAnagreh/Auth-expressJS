@@ -9,7 +9,7 @@ const createSession = function (req, res, newUser) {
     console.log('create session newUser', newUser)
     req.session.user = String(newUser._id); //most important section of this function
     req.session.name = String(newUser.firstName) + "-" + String(newUser.lastName);
-    req.session.email =  String(newUser.email)
+    req.session.email = String(newUser.email)
     user = req.session.user;
     name = req.session.name;
     email = req.session.email;
@@ -35,6 +35,9 @@ const checkUser = function (req, res, next) {
   // req.session.user = user;
   // req.session.name = name;
   // req.session.email = email;
+  user = '';
+  name = '';
+  email = '';
   if (req.session.views) {
     req.session.views++
   } else {
@@ -48,7 +51,7 @@ const checkUser = function (req, res, next) {
   }
 };
 
-const saveSession = function(req, res) {
+const saveSession = function (req, res) {
   req.session.user = user;
   req.session.name = name;
   req.session.email = email;
