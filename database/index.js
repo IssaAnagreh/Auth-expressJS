@@ -59,8 +59,8 @@ const selectAllUsersManager = function (callback) {
   });
 };
 
-const updateImages = function (email, callback) {
-  user.updateOne({ email: email }, { finalapproval: true }, function (err, res) {
+const updateImages = function (email, newImages, callback) {
+  user.updateOne({ email: email }, { images: newImages }, function (err, res) {
     if (err) {
       callback(err, null);
     } else {
