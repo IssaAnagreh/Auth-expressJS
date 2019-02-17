@@ -149,6 +149,7 @@ class ManagerApps extends Component {
     if (this.state.token) {
       return (
         <main className={classes.main} >
+        <a href='/logout'> Logout</a>
           {this.state.names}
           {this.state.users.map(user =>
             <ManagerUsers key={user.email} user={user}/>

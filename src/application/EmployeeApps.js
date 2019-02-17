@@ -162,6 +162,7 @@ class EmployeeApps extends Component {
     if (this.state.token) {
       return (
         <main className={classes.main} >
+        <a href='/logout'> Logout</a>
           {this.state.names}
           {this.state.users.map(user =>
             <EmployeeUsers key={user._id} user={user}/>
