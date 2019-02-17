@@ -70,6 +70,7 @@ class Manager extends Component {
         console.log('in login', res.data.user)
         this.setState({ token: res.data.user })
       })
+      .catch(err => console.log('Manager checkuser err', err))
   }
 
   onSubmit(event) {

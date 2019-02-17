@@ -1,20 +1,16 @@
 {
   "main.css": "/static/css/main.e3befa81.chunk.css",
-  "main.js": "/static/js/main.dc3b9396.chunk.js",
-  "main.js.map": "/static/js/main.dc3b9396.chunk.js.map",
+  "main.js": "/static/js/main.013884ac.chunk.js",
+  "main.js.map": "/static/js/main.013884ac.chunk.js.map",
   "runtime~main.js": "/static/js/runtime~main.fdfcfda2.js",
   "runtime~main.js.map": "/static/js/runtime~main.fdfcfda2.js.map",
-  "static/js/2.515df655.chunk.js": "/static/js/2.515df655.chunk.js",
-  "static/js/2.515df655.chunk.js.map": "/static/js/2.515df655.chunk.js.map",
+  "static/js/2.e3bebbed.chunk.js": "/static/js/2.e3bebbed.chunk.js",
+  "static/js/2.e3bebbed.chunk.js.map": "/static/js/2.e3bebbed.chunk.js.map",
   "index.html": "/index.html",
-  "precache-manifest.eba31ab1d77705afa940bcfc7307a9ba.js": "/precache-manifest.eba31ab1d77705afa940bcfc7307a9ba.js",
+  "precache-manifest.299a5805727af32520266faa85c6718c.js": "/precache-manifest.299a5805727af32520266faa85c6718c.js",
   "service-worker.js": "/service-worker.js",
   "static/css/main.e3befa81.chunk.css.map": "/static/css/main.e3befa81.chunk.css.map",
-  "static/media/1.jpg": "/static/media/1.39119431.jpg",
-  "static/media/IMG_12B2382AD5E9-1 copy 2.jpeg-USER: a-a": "/static/media/IMG_12B2382AD5E9-1 copy 2.d9010991.jpeg-USER: a-a",
-  "static/media/IMG_12B2382AD5E9-1 copy.jpeg-USER: a-a": "/static/media/IMG_12B2382AD5E9-1 copy.bb064efc.jpeg-USER: a-a",
-  "static/media/Maram Al Quran Bank Statement.pdf": "/static/media/Maram Al Quran Bank Statement.4507380f.pdf",
-  "static/media/Maram Al Quran Passport Scan.pdf": "/static/media/Maram Al Quran Passport Scan.26da59d5.pdf",
-  "static/media/Stripe_logo,_revised_2016.png-USER: a-a": "/static/media/Stripe_logo,_revised_2016.fb4644a0.png-USER: a-a",
-  "static/media/a-aUSERIMG_12B2382AD5E9-1 copy 4.jpeg": "/static/media/a-aUSERIMG_12B2382AD5E9-1 copy 4.4978ba02.jpeg"
+  "static/media/USERa-a--FILE1 (11).jpg": "/static/media/USERa-a--FILE1 (11).39119431.jpg",
+  "static/media/USERa-a--FILE1 (5).jpg": "/static/media/USERa-a--FILE1 (5).39119431.jpg",
+  "static/media/USERa-a--FILEissa (2).jpg": "/static/media/USERa-a--FILEissa (2).39119431.jpg"
 }

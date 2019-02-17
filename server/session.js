@@ -40,9 +40,9 @@ const checkUser = function (req, res, next) {
   } else {
     req.session.views = 1
   }
-  if (!isLoggedIn(req)) {
+  if (isLoggedIn(req)) {
     console.log('not signed')
-    res.sendStatus(404)
+    res.sendStatus(200)
   } else {
     res.send(req.session)
   }
