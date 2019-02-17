@@ -8,12 +8,13 @@ const upload = function (req, res) {
   var form = new formidable.IncomingForm();
 
   form.parse(req, function (err, fields, files) {
+    
     var oldpath = files.files.path;
     var newp = path.resolve(__dirname, '../public/uploads/') + '/USER' + req.session.name + '--FILE' + files.files.name;
     var newpath = path.resolve(__dirname, '../src/application/uploads/') + '/USER' + req.session.name + '--FILE' + files.files.name;
+    console.log('upload', '\n', oldpath, '\n', newp, '\n', newpath)
     fs.rename(oldpath, newpath, function (err) {
       if (err) throw err;
-
       db.selectAllEmails(req.session.email, function (err, found) {
         if (err) { // only for unpredictable errors
           res.sendStatus(500)
@@ -29,11 +30,19 @@ const upload = function (req, res) {
                 res.sendStatus(500)
                 return err
               } else {
-                res.sendStatus(200);
+                
               }
             })
           }
         }
+      })
+      console.log('upload next')
+      fs.rename(oldpath, newp, function (err) {
+        if (err) { // only for unpredictable errors
+          //res.sendStatus(500)
+          return err
+        }
+        res.sendStatus(200);
       })
     });
     // fs.rename(oldpath, newp, function (err) {
