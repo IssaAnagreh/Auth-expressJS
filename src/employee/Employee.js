@@ -75,7 +75,11 @@ class Employee extends Component {
   onSubmit(event) {
     //event.preventDefault();
     axios.post('/employee', this.state, { withCredentials: true })
-      .then(res => console.log('logged in'))
+      .then(res => axios.get('/savesession', { withCredentials: true })
+      .then(res => {
+        console.log('in login', res.data.user)
+        scope.setState({ token: res.data.user })
+      }))
     // $.ajax({
     //   type: 'POST',
     //   url: '/login',

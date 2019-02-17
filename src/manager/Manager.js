@@ -76,7 +76,11 @@ class Manager extends Component {
   onSubmit(event) {
     //event.preventDefault();
     axios.post('/manager', this.state, { withCredentials: true })
-      .then(res => console.log('logged in'))
+      .then(res => axios.get('/savesession', { withCredentials: true })
+        .then(res => {
+          console.log('in login', res.data.user)
+          scope.setState({ token: res.data.user })
+        }))
     // $.ajax({
     //   type: 'POST',
     //   url: '/login',
@@ -153,8 +157,8 @@ class Manager extends Component {
               className="link-button"
               onClick={this.handleForgotPassword.bind(this)}>
               <p style={{ margin: "0px" }}>Forgot</p></button></span> your password?</p>
-              <p style={{ margin: "0px" }}>Are you an <Link style={{ textDecoration: "none" }} to="/employee">Employee</Link> ?</p>
-              <Link style={{ textDecoration: "none" }} to="/login">Back</Link>
+            <p style={{ margin: "0px" }}>Are you an <Link style={{ textDecoration: "none" }} to="/employee">Employee</Link> ?</p>
+            <Link style={{ textDecoration: "none" }} to="/login">Back</Link>
           </Paper>
         </main>
       );

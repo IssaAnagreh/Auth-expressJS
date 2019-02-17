@@ -44,7 +44,7 @@ const checkUser = function (req, res, next) {
     console.log('not signed')
     res.sendStatus(200)
   } else {
-    res.send(req.session)
+    res.status(200).send(req.session)
   }
 };
 
