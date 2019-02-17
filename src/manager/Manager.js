@@ -74,10 +74,12 @@ class Manager extends Component {
     let scope = this;
     axios.post('/manager', this.state, { withCredentials: true })
       .then(res => {
-        scope.setState({ token: res.data.user })
+        console.log(res.data.user)
         axios.get('/savesession', { withCredentials: true })
-        .then(res => {  alert('isa')        
-        })
+          .then(res => {
+            scope.setState({ token: res.data.user })
+            alert(res.data.user)
+          })
       })
   }
 

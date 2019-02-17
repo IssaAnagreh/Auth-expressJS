@@ -45,6 +45,7 @@ var loginEmployee = function (req, res) {
   let employee = {
     firstName: 'employee',
     lastName: 'employee',
+    email: 'employee',
     _id: '1'
   }
   if (email === 'employee' && password === "employee") {
@@ -63,6 +64,7 @@ var loginManager = function (req, res) {
   let manager = {
     firstName: 'manager',
     lastName: 'manager',
+    email: 'manager',
     _id: '1'
   }
   if (email === 'manager' && password === "manager") {
