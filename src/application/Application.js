@@ -103,8 +103,9 @@ class Application extends Component {
   handleSubmit(event) {
     event.preventDefault();
     const data = new FormData(event.target);
+    console.log('uploading')
     axios.post('application/upload', data)
-      .then(res => { })
+      .then(res => console.log('uploaded!'))
   }
 
   onChange(event) {
