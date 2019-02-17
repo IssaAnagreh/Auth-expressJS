@@ -8,6 +8,7 @@
     "@material-ui/icons": "^3.0.2",
     "axios": "^0.18.0",
     "bcrypt-nodejs": "0.0.3",
+    "concurrently": "^4.1.0",
     "cookie-parser": "^1.4.4",
     "crypto": "^1.0.1",
     "express-partial": "^0.1.0",
@@ -27,12 +28,14 @@
     "request": "^2.88.0"
   },
   "scripts": {
-    "start": "react-scripts start & node server.js",
+    "start": "node server.js",
     "client": "react-scripts start",
     "build": "react-scripts build",
     "server": "nodemon server.js",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
+    "dev": "concurrently \"npm run server\" \"npm run client\"",
+    "heroku-postbuild": "NPM_CONFIG_PRODUCTION=false npm install --prefix client && npm run build --prefix client",
     "both": "react-scripts start & nodemon server.js"
   },
   "eslintConfig": {
