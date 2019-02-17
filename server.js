@@ -53,7 +53,7 @@ var images = function (req, res) {
 
 
 // connect to react
-app.use(express.static(path.join(__dirname, '/public')));
+app.use(express.static(path.join(__dirname, '/build')));
 
 
 app.get('/checkuser', sessionSection.checkSession);
@@ -85,7 +85,7 @@ app.get('/reset', forgotPassword.forgotPassword)
 
 // handle React routing, return all requests to React app
 app.get('*', (req, res) => {
-  res.sendFile(path.join(__dirname, '/public', '/index.html'));
+  res.sendFile(path.join(__dirname, '/build/index.html'));
 });
 
 
