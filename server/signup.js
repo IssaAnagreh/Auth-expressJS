@@ -35,7 +35,6 @@ const signupUser = function (req, res) {
         })
         newUser.save() //save to database
           .then(function () {
-            console.log('saved!')
             res.setHeader('Content-Type', 'application/json'); //res should be json
             session.createSession(req, res, newUser) //res is from the session function
           })

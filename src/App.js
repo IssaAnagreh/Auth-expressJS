@@ -1,6 +1,5 @@
 import React, { Component, Suspense } from 'react';
-import { BrowserRouter as Router, Route, Switch, Link } from 'react-router-dom';
-import axios from 'axios'
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import './App.css';
 import Signup from './registration/Signup.js';
 import Login from './login/Login.js';
@@ -18,17 +17,11 @@ class App extends Component {
   }
 
   componentDidMount() {
-    console.log('in App')
-    // axios.get('/', { withCredentials: true })
-    //   .then(res => {
-    //     console.log('res.user', res.data.user)
-    //     this.setState({ token: res.data.user })
-    //   })
+    console.log('=======in App========')
+
   }
 
   render() {
-    // let isAuthed = this.state.token ? true : false
-    // console.log('isAuthed', isAuthed)
     return (
       <div>
       <Router className="App">

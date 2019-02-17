@@ -1,17 +1,14 @@
 /* eslint-disable no-undef */
 import React, { Component } from 'react';
-import { BrowserRouter as Redirect, Switch, Route, Router, Link } from 'react-router-dom';
-import { withRouter } from 'react-router-dom'
+import { BrowserRouter as Redirect, Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import axios from 'axios'
-import $ from 'jquery'
-import { connect } from 'react-redux';
+// import $ from 'jquery'
 
 import Avatar from '@material-ui/core/Avatar';
 import Button from '@material-ui/core/Button';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import FormControl from '@material-ui/core/FormControl';
-// import Checkbox from '@material-ui/core/Checkbox';
 import Input from '@material-ui/core/Input';
 import InputLabel from '@material-ui/core/InputLabel';
 import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
@@ -67,8 +64,7 @@ class Manager extends Component {
   componentDidMount() {
     axios.get('/checkuser', { withCredentials: true })
       .then(res => {
-        console.log('in login', res.data.user)
-        this.setState({ token: res.data.user })
+        this.setState({ token: res.data })
       })
       .catch(err => console.log('Manager checkuser err', err))
   }
@@ -78,26 +74,11 @@ class Manager extends Component {
     let scope = this;
     axios.post('/manager', this.state, { withCredentials: true })
       .then(res => {
-        console.log('manager res.data.user', res.data.user)
         scope.setState({ token: res.data.user })
         axios.get('/savesession', { withCredentials: true })
         .then(res => {  alert('isa')        
         })
       })
-    // $.ajax({
-    //   type: 'POST',
-    //   url: '/login',
-    //   data: this.state,
-    //   xhrFields: {
-    //     withCredentials: true
-    //   },
-    //   success: (data) => {
-    //     console.log('logged in')
-    //   },
-    //   error: (err) => {
-    //     console.log('wrong password or username');
-    //   }
-    // });
   }
 
   onEmailChange(event) {

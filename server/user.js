@@ -1,17 +1,14 @@
 const db = require("../database/index")
 
 const newUsersManager = function (req, res, newUser) {
-  console.log('searching for new users manager')
   db.selectAllUsersManager(function (err, found) {
     if (err) { // only for unpredictable errors
       res.sendStatus(500)
       return err
     } else {
-      console.log('found0======', found)
       if (found.length === 0) {
         res.sendStatus(404);
       } else {
-        console.log('found======', found)
         res.status(200).send(found);
       }
     }

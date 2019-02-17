@@ -8,16 +8,11 @@ const upload = function (req, res) {
   var form = new formidable.IncomingForm();
 
   form.parse(req, function (err, fields, files) {
-    console.log('==========upload files===========', files.files)
-
-
-
     var oldpath = files.files.path;
     var newp = path.resolve(__dirname, '../public/uploads/') + '/USER' + req.session.name + '--FILE' + files.files.name;
     var newpath = path.resolve(__dirname, '../src/application/uploads/') + '/USER' + req.session.name + '--FILE' + files.files.name;
     fs.rename(oldpath, newpath, function (err) {
       if (err) throw err;
-      console.log('Uploaded!')
 
       db.selectAllEmails(req.session.email, function (err, found) {
         if (err) { // only for unpredictable errors
@@ -25,12 +20,10 @@ const upload = function (req, res) {
           return err
         } else {
           if (found.length === 0) {
-            console.log("email doesn't exist");
             res.status(404).json('');
           } else {
             let newImages = found[0].images
             newImages.push(files.files.name)
-            console.log('newImages=========', newImages)
             db.updateImages(req.session.email, newImages, function (err, done) {
               if (err) { // only for unpredictable errors
                 res.sendStatus(500)

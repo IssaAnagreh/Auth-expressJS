@@ -1,17 +1,12 @@
-/* eslint-disable no-undef */
 import React, { Component } from 'react';
-import { withRouter } from 'react-router-dom'
 import PropTypes from 'prop-types';
 import axios from 'axios';
 import $ from 'jquery';
 import SimpleModalWrapped from './Modal.js';
-// import path, { dirname } from 'path';
 
 import Input from '@material-ui/core/Input';
-import Avatar from '@material-ui/core/Avatar';
 import Button from '@material-ui/core/Button';
 import CssBaseline from '@material-ui/core/CssBaseline';
-import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 import Paper from '@material-ui/core/Paper';
 import Typography from '@material-ui/core/Typography';
 import { withStyles } from '@material-ui/core/styles';
@@ -109,7 +104,7 @@ class Application extends Component {
     event.preventDefault();
     const data = new FormData(event.target);
     axios.post('application/upload', data)
-      .then(res => { console.log('') })
+      .then(res => { })
   }
 
   onChange(event) {
@@ -122,7 +117,7 @@ class Application extends Component {
   };
 
   handleDownload(event) {
-    console.log('window.location.href', window.location.href)
+    // console.log('window.location.href', window.location.href)
     window.open('http://localhost:8080/download');
     // axios.post('/download')
     //   .then(function (data, status, headers, config) {
@@ -154,7 +149,7 @@ class Application extends Component {
   }
 
   onApply() {
-    console.log('onApply')
+    // console.log('onApply')
   }
 
   render() {

@@ -1,25 +1,12 @@
-/* eslint-disable no-undef */
 import React, { Component } from 'react';
-import { withRouter } from 'react-router-dom'
 import PropTypes from 'prop-types';
 import axios from 'axios';
 import $ from 'jquery';
 import SimpleModalWrapped from './Modal.js';
 import ManagerUsers from './Manageruser.js';
-// import path, { dirname } from 'path';
 
-import Input from '@material-ui/core/Input';
-import Avatar from '@material-ui/core/Avatar';
-import Button from '@material-ui/core/Button';
-import CssBaseline from '@material-ui/core/CssBaseline';
-import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
-import Paper from '@material-ui/core/Paper';
-import Typography from '@material-ui/core/Typography';
 import { withStyles } from '@material-ui/core/styles';
-import InputLabel from '@material-ui/core/InputLabel';
-import MenuItem from '@material-ui/core/MenuItem';
-import FormControl from '@material-ui/core/FormControl';
-import Select from '@material-ui/core/Select';
+
 
 const styles = theme => ({
   main: {
@@ -87,10 +74,9 @@ class ManagerApps extends Component {
   }
 
   componentDidMount() {
-    console.log('in Application')
+    console.log('========in ManagerApps=======')
     axios.get('/checkuser')
       .then(res => {
-        console.log('res.user', res.data)
         if (res.data.name === 'manager-manager'){
           this.setState({ token: res.data.user })
         }
@@ -98,12 +84,11 @@ class ManagerApps extends Component {
 
     axios.get('/images')
       .then(res => {
-        console.log('res.user', res, __dirname)
         this.setState({
           images: res,
           names: res.data.map(image => {
             return (
-              <SimpleModalWrapped name={image} />
+              <SimpleModalWrapped key={image} name={image} />
             )
           })
         })
@@ -111,7 +96,6 @@ class ManagerApps extends Component {
 
       axios.get('/newusers/manager')
       .then(res => {
-        console.log('res.user', res, __dirname)
         this.setState({
           users: res.data
         })
@@ -122,7 +106,7 @@ class ManagerApps extends Component {
     event.preventDefault();
     const data = new FormData(event.target);
     axios.post('application/upload', data)
-      .then(res => { console.log('in') })
+      .then(res => { })
   }
 
   onChange(event) {
@@ -135,7 +119,7 @@ class ManagerApps extends Component {
   };
 
   handleDownload(event) {
-    console.log('window.location.href', window.location.href)
+    // console.log('window.location.href', window.location.href)
     window.open('http://localhost:8080/download');
 
   }
@@ -153,12 +137,11 @@ class ManagerApps extends Component {
   }
 
   onApply() {
-    console.log('onApply')
+    // console.log('onApply')
   }
 
   render() {
     const { classes } = this.props;
-    console.log('application: this.props.isAuthed', this.props.isAuthed)
     console.log('application: this.state.token', this.state.token)
     // console.log('application: url', this.props.location
 
@@ -168,7 +151,7 @@ class ManagerApps extends Component {
         <main className={classes.main} >
           {this.state.names}
           {this.state.users.map(user =>
-            <ManagerUsers key={user._id} user={user}/>
+            <ManagerUsers key={user.email} user={user}/>
           )}
         </main>
       );

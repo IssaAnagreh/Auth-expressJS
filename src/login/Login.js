@@ -1,11 +1,9 @@
 /* eslint-disable no-undef */
 import React, { Component } from 'react';
-import { BrowserRouter as Redirect, Switch, Route, Router, Link } from 'react-router-dom';
-import { withRouter } from 'react-router-dom'
+import { BrowserRouter as Redirect, Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import axios from 'axios'
-import $ from 'jquery'
-import { connect } from 'react-redux';
+// import $ from 'jquery'
 
 import Avatar from '@material-ui/core/Avatar';
 import Button from '@material-ui/core/Button';
@@ -77,27 +75,9 @@ class Login extends Component {
       .then(res => {
         axios.get('/savesession', { withCredentials: true })
           .then(res => {
-            console.log('in login', res.data.user)
             scope.setState({ token: res.data.user })
           })
       })
-
-    console.log('logged in')
-    // $.ajax({
-    //   type: 'POST',
-    //   url: '/login',
-    //   data: this.state,
-    //   xhrFields: {
-    //     withCredentials: true
-    //   },
-    //   success: (data) => {
-    //     console.log('logged in')
-    //   },
-    //   error: (err) => {
-    //     console.log('wrong password or username');
-    //   }
-    // });
-    console.log('login: this.state.token', this.state.token)
   }
 
   onEmailChange(event) {

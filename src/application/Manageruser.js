@@ -1,24 +1,10 @@
 /* eslint-disable no-undef */
 import React, { Component } from 'react';
-import { withRouter } from 'react-router-dom'
 import PropTypes from 'prop-types';
 import axios from 'axios';
-import $ from 'jquery';
-import SimpleModalWrapped from './Modal.js';
-// import path, { dirname } from 'path';
 
-import Input from '@material-ui/core/Input';
-import Avatar from '@material-ui/core/Avatar';
-import Button from '@material-ui/core/Button';
-import CssBaseline from '@material-ui/core/CssBaseline';
-import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
-import Paper from '@material-ui/core/Paper';
-import Typography from '@material-ui/core/Typography';
 import { withStyles } from '@material-ui/core/styles';
-import InputLabel from '@material-ui/core/InputLabel';
-import MenuItem from '@material-ui/core/MenuItem';
-import FormControl from '@material-ui/core/FormControl';
-import Select from '@material-ui/core/Select';
+
 
 const styles = theme => ({
     main: {
@@ -89,10 +75,8 @@ class ManagerUsers extends Component {
     }
 
     approve() {
-        console.log('=======APPROVE======', this.props.user.email)
         axios.post('/approve/manager', {email: this.props.user.email})
             .then(res => {
-                console.log('done')
             })
     }
 
