@@ -76,7 +76,9 @@ class Manager extends Component {
       .then(res => {
         axios.get('/savesession', { withCredentials: true })
           .then(res => {
+            alert('1'+res.data.user)
             scope.setState({ token: res.data.user })
+            alert('2'+res.data.user)
           })
       })
   }
@@ -100,7 +102,6 @@ class Manager extends Component {
 
   render() {
     const { classes } = this.props;
-    console.log('Manager render token', this.state.token)
 
     if (!this.state.token) {
       return (
@@ -146,7 +147,6 @@ class Manager extends Component {
         </main>
       );
     } else {
-      console.log('Manager -> redirect')
       return (
         <>
           <Redirect to={{ pathname: '/application' }} />

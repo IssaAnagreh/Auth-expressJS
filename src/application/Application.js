@@ -160,6 +160,7 @@ class Application extends Component {
     if (this.state.token) {
       return (
         <main className={classes.main} >
+        <a href='/logout'> Logout</a>
           <CssBaseline />
           <Paper className={classes.paper}>
             <Typography component="h1" variant="h5">
