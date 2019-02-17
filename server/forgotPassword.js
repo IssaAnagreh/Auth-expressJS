@@ -19,7 +19,7 @@ const forgotPassword = function (req, res) {
     req.email = 'isa@isa.com'
     const mailOptions = {
         from: 'polaris.issa@gmail.com',
-        to: 'isa_anagreh@hotmail.com',
+        to: 'ahmad.272h@gmail.com',
         subject: 'Sending Email using Node.js',
         text: 'You are receiving this because you (or someone else) have requested the reset of the password for your account.\n\n' +
             'Please click on the following link, or paste this into your browser to complete the process:\n\n' +

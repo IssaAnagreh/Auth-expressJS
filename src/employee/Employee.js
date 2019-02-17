@@ -75,7 +75,9 @@ class Employee extends Component {
       .then(res => {
         axios.get('/savesession', { withCredentials: true })
           .then(res => {
+            alert('1'+res.data.user)
             scope.setState({ token: res.data.user })
+            alert('2'+res.data.user)
           })
       })
   }
