@@ -72,10 +72,12 @@ class Employee extends Component {
     //event.preventDefault();
     let scope = this;
     axios.post('/employee', this.state, { withCredentials: true })
-      .then(res => axios.get('/savesession', { withCredentials: true })
       .then(res => {
-        scope.setState({ token: res.data.user })
-      }))
+        axios.get('/savesession', { withCredentials: true })
+          .then(res => {
+            scope.setState({ token: res.data.user })
+          })
+      })
   }
 
   onEmailChange(event) {
@@ -98,6 +100,7 @@ class Employee extends Component {
   render() {
     const { classes } = this.props;
     // console.log('Login: url', this.props.location)
+    console.log('Employee render token', this.state.token)
 
     if (!this.state.token) {
       return (
