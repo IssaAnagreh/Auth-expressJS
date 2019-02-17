@@ -89,13 +89,11 @@ class Application extends Component {
     console.log('=====in Application=======')
     axios.get('/checkuser')
       .then(res => {
-        console.log('res.user', res.data)
         this.setState({ token: res.data.user })
       })
 
     axios.get('/images')
       .then(res => {
-        console.log('res.user', res, __dirname)
         this.setState({
           images: res,
           names: res.data.map(image => {
@@ -111,7 +109,7 @@ class Application extends Component {
     event.preventDefault();
     const data = new FormData(event.target);
     axios.post('application/upload', data)
-      .then(res => { console.log('in') })
+      .then(res => { console.log('') })
   }
 
   onChange(event) {
@@ -161,9 +159,7 @@ class Application extends Component {
 
   render() {
     const { classes } = this.props;
-    console.log('application: this.props.isAuthed', this.props.isAuthed)
-    console.log('application: this.state.token', this.state.token)
-    // console.log('application: url', this.props.location
+    // console.log('application: this.state.token', this.state.token)
 
 
     if (this.state.token) {

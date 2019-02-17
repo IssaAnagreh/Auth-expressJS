@@ -76,8 +76,6 @@ class Login extends Component {
     axios.post('/login', this.state, { withCredentials: true })
       .then(res => {
         axios.get('/savesession', { withCredentials: true })
-        console.log('manager res.data.user', res.data.user)
-        axios.get('/savesession', { withCredentials: true })
           .then(res => {
             console.log('in login', res.data.user)
             scope.setState({ token: res.data.user })

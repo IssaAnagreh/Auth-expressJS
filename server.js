@@ -48,7 +48,6 @@ app.use(session({
 
 var images = function (req, res) {
   fs.readdir(path.join(__dirname, '/src/application/uploads'), (err, files) => {
-    console.log('========files==========', files);
     res.send(JSON.stringify(files));
   });
 }

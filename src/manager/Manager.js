@@ -74,15 +74,14 @@ class Manager extends Component {
   }
 
   onSubmit(event) {
-    //event.preventDefault();
+    // event.preventDefault();
+    let scope = this;
     axios.post('/manager', this.state, { withCredentials: true })
       .then(res => {
         console.log('manager res.data.user', res.data.user)
         scope.setState({ token: res.data.user })
         axios.get('/savesession', { withCredentials: true })
-        .then(res => {
-          console.log('in login', res.data.user)
-          
+        .then(res => {  alert('isa')        
         })
       })
     // $.ajax({
@@ -99,7 +98,6 @@ class Manager extends Component {
     //     console.log('wrong password or username');
     //   }
     // });
-    console.log('login: this.state.token', this.state.token)
   }
 
   onEmailChange(event) {
@@ -121,7 +119,7 @@ class Manager extends Component {
 
   render() {
     const { classes } = this.props;
-    // console.log('Login: url', this.props.location)
+    console.log('Manager render token', this.state.token)
 
     if (!this.state.token) {
       return (

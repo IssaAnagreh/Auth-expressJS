@@ -88,10 +88,9 @@ class EmployeeApps extends Component {
   }
 
   componentDidMount() {
-    console.log('in Application')
+    console.log('=====EmployeeApps======')
     axios.get('/checkuser')
       .then(res => {
-        console.log('res.user', res.data)
         if (res.data.name === 'employee-employee') {
           this.setState({ token: res.data.user })
         }
@@ -99,12 +98,11 @@ class EmployeeApps extends Component {
 
     axios.get('/images')
       .then(res => {
-        console.log('res.user', res, __dirname)
         this.setState({
           images: res,
           names: res.data.map(image => {
             return (
-              <SimpleModalWrapped name={image} />
+              <SimpleModalWrapped key={image} name={image} />
             )
           })
         })
@@ -112,7 +110,6 @@ class EmployeeApps extends Component {
 
       axios.get('/newusers/employee')
       .then(res => {
-        console.log('res.user', res, __dirname)
         this.setState({
           users: res.data
         })
@@ -173,9 +170,7 @@ class EmployeeApps extends Component {
 
   render() {
     const { classes } = this.props;
-    console.log('application: this.props.isAuthed', this.props.isAuthed)
-    console.log('application: this.state.token', this.state.token)
-    // console.log('application: url', this.props.location
+    // console.log('application: this.state.token', this.state.token)
 
 
     if (this.state.token) {

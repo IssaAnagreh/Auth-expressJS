@@ -70,7 +70,6 @@ const updateImages = function (email, callback) {
 }
 
 const managerApproval = function (email, callback) {
-  console.log('managerApproval', email)
   user.updateOne({ email: email }, { finalapproval: true }, function (err, res) {
     if (err) {
       callback(err, null);
@@ -81,7 +80,6 @@ const managerApproval = function (email, callback) {
 }
 
 const employeeApproval = function (email, callback) {
-  console.log('employeeApproval', email)
   user.updateOne({ email: email }, { approval: true }, function (err, res) {
     if (err) {
       callback(err, null);
