@@ -66,17 +66,24 @@ class Login extends Component {
   }
 
   componentDidMount() {
-    axios.get('/checkuser', { withCredentials: true })
-      .then(res => {
-        console.log('in login', res.data.user)
-        this.setState({ token: res.data.user })
-      })
+    console.log('=====in login====')
+
   }
 
   onSubmit(event) {
-    //event.preventDefault();
+    event.preventDefault();
+    let scope = this;
     axios.post('/login', this.state, { withCredentials: true })
-      .then(res => console.log('logged in'))
+      .then(res => {
+        console.log('next login step')
+        axios.get('/savesession', { withCredentials: true })
+          .then(res => {
+            console.log('in login', res.data.user)
+            scope.setState({ token: res.data.user })
+          })
+      })
+
+    console.log('logged in')
     // $.ajax({
     //   type: 'POST',
     //   url: '/login',
@@ -154,8 +161,8 @@ class Login extends Component {
               onClick={this.handleForgotPassword.bind(this)}>
               <p style={{ margin: "0px" }}>Forgot</p></button></span> your password?</p>
 
-              <p style={{ margin: "0px" }}>Are you a <Link style={{ textDecoration: "none" }} to="/manager">Manager</Link> ?</p>
-              <p style={{ margin: "0px" }}>Are you an <Link style={{ textDecoration: "none" }} to="/employee">Employee</Link> ?</p>
+            <p style={{ margin: "0px" }}>Are you a <Link style={{ textDecoration: "none" }} to="/manager">Manager</Link> ?</p>
+            <p style={{ margin: "0px" }}>Are you an <Link style={{ textDecoration: "none" }} to="/employee">Employee</Link> ?</p>
 
           </Paper>
         </main>

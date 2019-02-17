@@ -5,6 +5,7 @@ import PropTypes from 'prop-types';
 import axios from 'axios';
 import $ from 'jquery';
 import SimpleModalWrapped from './Modal.js';
+import ManagerUsers from './Manageruser.js';
 // import path, { dirname } from 'path';
 
 import Input from '@material-ui/core/Input';
@@ -77,7 +78,7 @@ class ManagerApps extends Component {
     super(props)
     this.state = {
       name: '',
-      download: '1.jpg',
+      users: [],
       major: '',
       token: '',
       names: [],
@@ -90,7 +91,9 @@ class ManagerApps extends Component {
     axios.get('/checkuser')
       .then(res => {
         console.log('res.user', res.data)
-        this.setState({ token: res.data.user })
+        if (res.data.name === 'manager-manager'){
+          this.setState({ token: res.data.user })
+        }
       })
 
     axios.get('/images')
@@ -103,6 +106,14 @@ class ManagerApps extends Component {
               <SimpleModalWrapped name={image} />
             )
           })
+        })
+      })
+
+      axios.get('/newusers/manager')
+      .then(res => {
+        console.log('res.user', res, __dirname)
+        this.setState({
+          users: res.data
         })
       })
   }
@@ -126,20 +137,6 @@ class ManagerApps extends Component {
   handleDownload(event) {
     console.log('window.location.href', window.location.href)
     window.open('http://localhost:8080/download');
-    // axios.post('/download')
-    //   .then(function (data, status, headers, config) {
-    //     $window.open('/download'); //does the download
-    //   })
-    //   .catch(err => console.log('errrrrrr', err.response))
-
-    // console.log('window.URL.createObjectURL(data);', window.URL.createObjectURL(data))
-    // event.preventDefault();
-    //   axios.get(`download/${this.state.download}`)
-    //   .then(res => {
-    //     //$window.open(`download/${this.state.download}`)
-    //     console.log('done', res)
-    //   })
-    //   .catch(err => console.log('errrrrrr', err.response))
 
   }
 
@@ -170,6 +167,9 @@ class ManagerApps extends Component {
       return (
         <main className={classes.main} >
           {this.state.names}
+          {this.state.users.map(user =>
+            <ManagerUsers key={user._id} user={user}/>
+          )}
         </main>
       );
     } else {

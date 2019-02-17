@@ -35,7 +35,6 @@ class App extends Component {
         <Suspense fallback={<div>Loading..</div>}>
           <Switch>
             <Route exact path="/application" component={Application} />
-            {/* <Route exact path="/logout" component={Logout} /> */}
             <Route path="/signup" component={Signup} />
             <Route path="/login" component={Login} />
             <Route path="/employee" component={Employee} />

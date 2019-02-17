@@ -18,6 +18,8 @@ const loginUser = require('./server/login.js');
 const forgotPassword = require('./server/forgotPassword.js');
 const application = require('./server/application')
 const sessionSection = require('./server/session')
+const users = require('./server/user')
+
 
 // use express
 const app = express();
@@ -56,8 +58,13 @@ var images = function (req, res) {
 app.use(express.static(path.join(__dirname, '/build')));
 
 
-app.get('/checkuser', sessionSection.checkSession);
+app.get('/savesession', sessionSection.saveSession);
+app.get('/checkuser', sessionSection.checkUser);
 
+app.get('/newusers/manager', users.newUsersManager);
+app.get('/newusers/employee', users.newUsersEmployee);
+app.post('/approve/manager', users.approveManager);
+app.post('/approve/employee', users.approveEmployee);
 app.get('/images', images);
 
 app.post('/login', loginUser.loginUser)

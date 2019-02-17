@@ -77,6 +77,9 @@ var loginManager = function (req, res) {
 //destroy session function
 var logoutUser = function (req, res) {
   console.log("before", req.session, 'req.originalUrl', req.get('host') + req.originalUrl)
+  req.session.user = '';
+  req.session.name = '';
+  req.session.email = '';
   req.session.destroy(function () { //remove session
     //res.redirect('/login');
     res.status(200).send()

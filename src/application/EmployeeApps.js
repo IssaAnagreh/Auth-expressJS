@@ -5,6 +5,8 @@ import PropTypes from 'prop-types';
 import axios from 'axios';
 import $ from 'jquery';
 import SimpleModalWrapped from './Modal.js';
+import EmployeeUsers from './Employeeuser.js';
+
 // import path, { dirname } from 'path';
 
 import Input from '@material-ui/core/Input';
@@ -77,7 +79,7 @@ class EmployeeApps extends Component {
     super(props)
     this.state = {
       name: '',
-      download: '1.jpg',
+      users: [],
       major: '',
       token: '',
       names: [],
@@ -90,7 +92,9 @@ class EmployeeApps extends Component {
     axios.get('/checkuser')
       .then(res => {
         console.log('res.user', res.data)
-        this.setState({ token: res.data.user })
+        if (res.data.name === 'employee-employee') {
+          this.setState({ token: res.data.user })
+        }
       })
 
     axios.get('/images')
@@ -103,6 +107,14 @@ class EmployeeApps extends Component {
               <SimpleModalWrapped name={image} />
             )
           })
+        })
+      })
+
+      axios.get('/newusers/employee')
+      .then(res => {
+        console.log('res.user', res, __dirname)
+        this.setState({
+          users: res.data
         })
       })
   }
@@ -170,6 +182,9 @@ class EmployeeApps extends Component {
       return (
         <main className={classes.main} >
           {this.state.names}
+          {this.state.users.map(user =>
+            <EmployeeUsers key={user._id} user={user}/>
+          )}
         </main>
       );
     } else {

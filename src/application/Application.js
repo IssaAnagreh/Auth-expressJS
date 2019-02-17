@@ -86,7 +86,7 @@ class Application extends Component {
   }
 
   componentDidMount() {
-    console.log('in Application')
+    console.log('=====in Application=======')
     axios.get('/checkuser')
       .then(res => {
         console.log('res.user', res.data)

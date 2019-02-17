@@ -6,12 +6,13 @@ const createSession = function (req, res, newUser) {
   // var clients = []
   req.session.regenerate(function (err) {
     if (err) { return err }
-    console.log('session newUser', newUser)
+    console.log('create session newUser', newUser)
     req.session.user = String(newUser._id); //most important section of this function
     req.session.name = String(newUser.firstName) + "-" + String(newUser.lastName);
     req.session.email =  String(newUser.email)
     user = req.session.user;
     name = req.session.name;
+    email = req.session.email;
     if (req.session.views) {
       req.session.views++
       console.log('after save session', req.session)
@@ -24,15 +25,16 @@ const createSession = function (req, res, newUser) {
 };
 
 const isLoggedIn = function (req) {
-  console.log('isLoggedIn', req.session, 'req.originalUrl', req.get('host') + req.originalUrl)
+  //console.log('isLoggedIn', req.session, 'req.originalUrl', req.get('host') + req.originalUrl)
+  console.log('isLoggedIn')
   return req.session ? !!req.session.user : false;
 };
 
 const checkUser = function (req, res, next) {
-  console.log('req.session.views', req.session.views)
-  req.session.user = user;
-  req.session.name = name;
-  req.session.email = email;
+  console.log('server checkUser=======', req.session)
+  // req.session.user = user;
+  // req.session.name = name;
+  // req.session.email = email;
   if (req.session.views) {
     req.session.views++
   } else {
@@ -40,22 +42,22 @@ const checkUser = function (req, res, next) {
   }
   if (!isLoggedIn(req)) {
     console.log('not signed')
-    res.send('')
+    res.sendStatus(404)
   } else {
-    next();
+    res.send(req.session)
   }
 };
 
-const checkSession = function(req, res) {
+const saveSession = function(req, res) {
   req.session.user = user;
   req.session.name = name;
   req.session.email = email;
-  console.log('req.session', req.session)
+  console.log('saveSession=======', req.session)
   res.send(req.session)
 }
 
 module.exports.createSession = createSession;
 module.exports.checkUser = checkUser;
-module.exports.checkSession = checkSession;
+module.exports.saveSession = saveSession;
 
 
